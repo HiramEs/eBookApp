@@ -105,7 +105,7 @@ const Home = () => {
   };
 
   return (
-    <View>
+    <View style={{backgroundColor: "#F5F5F5"}} >
       {renderHeader()}
       {renderBookShelf()}
     </View>

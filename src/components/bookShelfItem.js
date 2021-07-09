@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   bookContainer: {
     width: 150,
-    height: 250,
+    height: 270,
     borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
