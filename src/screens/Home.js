@@ -1,20 +1,13 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
+import bookShelfItem from '../components/bookShelfItem';
 import {icons} from '../constanst';
-import { FONTS } from '../constanst/theme';
-
-// const Header = () => {
-//   return (
-//     <View>
-//       <Text>Header2</Text>
-//     </View>
-//   )
-// }
+import {FONTS} from '../constanst/theme';
+import BookShelfData from '../data/bookShelfData.json';
 
 const Home = () => {
-
   const renderHeader = () => {
-    return (  
+    return (
       <View
         style={{
           flexDirection: 'row',
@@ -54,7 +47,7 @@ const Home = () => {
           style={{
             width: '40%',
             height: '100%',
-            flexDirection: "row",
+            flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
             borderTopLeftRadius: 30,
@@ -79,17 +72,34 @@ const Home = () => {
               }}
             />
           </View>
-          <View style={{
-              flexDirection: "column",
-              width: "70%",
-              height: "100%",
-              justifyContent: "center",
+          <View
+            style={{
+              flexDirection: 'column',
+              width: '70%',
+              height: '100%',
+              justifyContent: 'center',
               paddingLeft: 10,
-          }} >
-              <Text style={{...FONTS.body4}} >Hiram Estrada</Text>
-              <Text style={{ color: "#DF7200", ...FONTS.body4 }} >5332 points</Text>
+            }}>
+            <Text style={{...FONTS.body4}}>Hiram Estrada</Text>
+            <Text style={{color: '#DF7200', ...FONTS.body4}}>5332 points</Text>
           </View>
         </TouchableOpacity>
+      </View>
+    );
+  };
+
+  const renderBookShelf = () => {
+    return (
+      <View style={{padding: 20}}>
+        <Text style={{...FONTS.h2}}>Your</Text>
+        <Text style={{...FONTS.h1}}>BOOKSHELF</Text>
+        <FlatList 
+        data={BookShelfData}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={item => `${item.id}`}
+        renderItem={bookShelfItem}
+        />
       </View>
     );
   };
@@ -97,7 +107,7 @@ const Home = () => {
   return (
     <View>
       {renderHeader()}
-      {/* <Header /> */}
+      {renderBookShelf()}
     </View>
   );
 };
