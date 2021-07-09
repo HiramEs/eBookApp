@@ -19,6 +19,7 @@ const Home = () => {
         style={{
           flexDirection: 'row',
           height: 50,
+          marginTop: 10,
         }}>
         {/* Boton menu */}
         <TouchableOpacity
