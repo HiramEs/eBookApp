@@ -1,12 +1,19 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import Home from './src/screens/Home';
 
 const App = () => {
   return (
-    <View>
-      <Text></Text>
-    </View>
-  )
-}
+    <SafeAreaView style={styles.container}>
+      <Home />
+    </SafeAreaView>
+  );
+};
 
-export default App
+export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
