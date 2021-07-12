@@ -71,6 +71,15 @@
 		<string>RobotoCondensed-Light.ttf</string>
 		<string>RobotoCondensed-LightItalic.ttf</string>
 		<string>RobotoCondensed-Regular.ttf</string>
+		<string>EncodeSansSC-Black.ttf</string>
+		<string>EncodeSansSC-Bold.ttf</string>
+		<string>EncodeSansSC-ExtraBold.ttf</string>
+		<string>EncodeSansSC-ExtraLight.ttf</string>
+		<string>EncodeSansSC-Light.ttf</string>
+		<string>EncodeSansSC-Medium.ttf</string>
+		<string>EncodeSansSC-Regular.ttf</string>
+		<string>EncodeSansSC-SemiBold.ttf</string>
+		<string>EncodeSansSC-Thin.ttf</string>
 	</array>
 </dict>
 </plist>

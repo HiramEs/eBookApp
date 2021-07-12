@@ -1,9 +1,11 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, ScrollView } from 'react-native';
 import bookShelfItem from '../components/bookShelfItem';
-import {icons} from '../constanst';
-import {FONTS} from '../constanst/theme';
-import BookShelfData from '../data/bookShelfData.json';
+import recentItem from '../components/recentItem';
+import { icons } from '../constanst';
+import { FONTS } from '../constanst/theme';
+import BookShelfData from '../data/bookShelfData.js';
+import recentBooks from '../data/recentBooks';
 
 const Home = () => {
   const renderHeader = () => {
@@ -80,8 +82,8 @@ const Home = () => {
               justifyContent: 'center',
               paddingLeft: 10,
             }}>
-            <Text style={{...FONTS.body4}}>Hiram Estrada</Text>
-            <Text style={{color: '#DF7200', ...FONTS.body4}}>5332 points</Text>
+            <Text style={{ ...FONTS.body4 }}>Hiram Estrada</Text>
+            <Text style={{ color: '#DF7200', ...FONTS.body4 }}>5332 points</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -90,24 +92,39 @@ const Home = () => {
 
   const renderBookShelf = () => {
     return (
-      <View style={{padding: 20}}>
-        <Text style={{...FONTS.h2}}>Your</Text>
-        <Text style={{...FONTS.h1}}>BOOKSHELF</Text>
-        <FlatList 
-        data={BookShelfData}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={item => `${item.id}`}
-        renderItem={bookShelfItem}
+      <View style={{ padding: 20, paddingBottom: 8 }}>
+        <Text style={{ ...FONTS.h2 }}>Your</Text>
+        <Text style={{ ...FONTS.h1 }}>BOOKSHELF</Text>
+        <FlatList
+          data={BookShelfData}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={item => `${item.id}`}
+          renderItem={bookShelfItem}
         />
       </View>
     );
   };
 
+  const renderRecentBooks = () => {
+    return (
+      <View style={{ padding: 20 }} >
+        <Text style={{ ...FONTS.h2 }} >Recent Books</Text>
+        <FlatList
+          data={recentBooks}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => `${item.id}`}
+          renderItem={recentItem}
+        />
+      </View>
+    )
+  }
+
   return (
-    <View style={{backgroundColor: "#F5F5F5"}} >
+    <View style={{ backgroundColor: "#FFFAFA", flex: 1 }} >
       {renderHeader()}
       {renderBookShelf()}
+      {renderRecentBooks()}
     </View>
   );
 };
