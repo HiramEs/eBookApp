@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, ScrollView, List } from 'react-native';
 import bookShelfItem from '../components/bookShelfItem';
-import recentItem from '../components/recentItem';
+import RecentItem from '../components/recentItem';
 import { icons } from '../constanst';
 import { FONTS } from '../constanst/theme';
 import BookShelfData from '../data/bookShelfData.js';
@@ -108,23 +108,26 @@ const Home = () => {
 
   const renderRecentBooks = () => {
     return (
-      <View style={{ padding: 20 }} >
-        <Text style={{ ...FONTS.h2 }} >Recent Books</Text>
-        <FlatList
-          data={recentBooks}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={item => `${item.id}`}
-          renderItem={recentItem}
-        />
+      <View style={{ padding: 20}} >
+        <Text style={{ ...FONTS.h2, marginBottom: 8 }} >Recent Books</Text>
+        {
+          recentBooks.map(item => {
+            return (
+              <RecentItem item={item} key={item.id} />
+            )
+          })
+        }
       </View>
     )
   }
 
   return (
     <View style={{ backgroundColor: "#FFFAFA", flex: 1 }} >
+      <ScrollView showsVerticalScrollIndicator={false} >
       {renderHeader()}
       {renderBookShelf()}
       {renderRecentBooks()}
+      </ScrollView>
     </View>
   );
 };

@@ -3,26 +3,26 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, TouchableOpacityBase }
 import { icons } from '../constanst'
 import { FONTS } from '../constanst/theme'
 
-export default function recentItem({item}) {
+export default function RecentItem({ item }) {
     return (
-        <TouchableOpacity style={styles.container} >
+        <View style={styles.container} >
             <View style={styles.itemContainer} >
                 <Image source={item.photo} style={styles.image} />
                 <View style={styles.textContainer} >
-                    <Text style={{...FONTS.h4}} >{item.name}</Text>
-                    <Text style={{marginTop: 8, ...FONTS.body4}}>{item.author}</Text>
+                    <Text style={{ ...FONTS.h4 }} >{item.name}</Text>
+                    <Text style={{ marginTop: 8, ...FONTS.body4 }}>{item.author}</Text>
                     <Text style={{ ...FONTS.body2 }} >{item.rating}</Text>
                 </View>
                 <View style={styles.botonContainer} >
-                    <TouchableOpacity style={{backgroundColor: "#000",...styles.boton}} >
-                        <Image source={icons.play} resizeMode="contain" style={{tintColor: "#fff", height: 20, width: 20}} />
+                    <TouchableOpacity style={{ backgroundColor: "#000", ...styles.boton }} >
+                        <Image source={icons.play} resizeMode="contain" style={{ tintColor: "#fff", height: 20, width: 20 }} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={{borderWidth: 1, borderColor: "FFFFFA",...styles.boton}} >
-                        <Image source={icons.eye} resizeMode="contain" style={{tintColor: "black", height: 20, width: 20}} />
+                    <TouchableOpacity style={{ borderWidth: 1, borderColor: "FFFFFA", ...styles.boton }} >
+                        <Image source={icons.eye} resizeMode="contain" style={{ tintColor: "black", height: 20, width: 20 }} />
                     </TouchableOpacity>
                 </View>
             </View>
-        </TouchableOpacity>
+        </View>
     )
 }
 
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         paddingTop: 10,
-        marginTop: 8
     },
     itemContainer: {
         flexDirection: "row",
@@ -38,13 +37,14 @@ const styles = StyleSheet.create({
         height: 120
     },
     image: {
-        width: 60,
-        height: 100,
+        width: 90,
+        height: 120,
         resizeMode: 'contain'
     },
     textContainer: {
         flexDirection: "column",
-        padding: 8,
+        width: "45%",
+        paddingLeft: 5,
     },
     botonContainer: {
         justifyContent: "center",
