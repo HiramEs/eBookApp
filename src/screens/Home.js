@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image, FlatList, ScrollView, List } from 'react-native';
 import BookShelfItem from '../components/bookShelfItem';
 import RecentItem from '../components/recentItem';
@@ -8,6 +8,25 @@ import BookShelfData from '../data/bookShelfData.js';
 import recentBooks from '../data/recentBooks';
 
 const Home = ({ navigation }) => {
+
+  const [BookShelf, setBookShelf] = useState([]);
+  const [recentBooksList, setRecentBooks] = useState([]);
+
+  useEffect(() => {
+    setBookShelf(BookShelfData);
+    setRecentBooks(recentBooks);
+    // console.log("Cosa");
+    // fetch("https://pokeapi.co/api/v2/pokemon/ditto")
+    // .then(res => {
+    //   console.log(res);
+    // });
+  }, []);
+
+  const addToBookShelf = (book) => {
+    setRecentBooks(recentBooksList.filter(item => item !== book));
+    setBookShelf([book, ...BookShelf]);
+  }
+
   const renderHeader = () => {
     return (
       <View
@@ -97,7 +116,7 @@ const Home = ({ navigation }) => {
         <Text style={{ ...FONTS.h2 }}>Your</Text>
         <Text style={{ ...FONTS.h1 }}>BOOKSHELF</Text>
         <FlatList
-          data={BookShelfData}
+          data={BookShelf}
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={item => `${item.id}`}
@@ -114,9 +133,9 @@ const Home = ({ navigation }) => {
       <View style={{ padding: 20 }} >
         <Text style={{ ...FONTS.h2, marginBottom: 8 }} >Recent Books</Text>
         {
-          recentBooks.map(item => {
+          recentBooksList.map(item => {
             return (
-              <RecentItem item={item} key={item.id} navigation={navigation} />
+              <RecentItem item={item} key={item.id} navigation={navigation} onPress={addToBookShelf} />
             )
           })
         }
