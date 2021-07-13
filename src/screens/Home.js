@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, FlatList, ScrollView, List } from 'react-native';
-import bookShelfItem from '../components/bookShelfItem';
+import BookShelfItem from '../components/bookShelfItem';
 import RecentItem from '../components/recentItem';
 import { icons } from '../constanst';
 import { FONTS } from '../constanst/theme';
 import BookShelfData from '../data/bookShelfData.js';
 import recentBooks from '../data/recentBooks';
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const renderHeader = () => {
     return (
       <View
@@ -40,14 +40,14 @@ const Home = () => {
           }}>
           <View
             style={{
-              width: '60%',
+              width: '50%',
             }}></View>
         </View>
 
         {/* Boton Puntos */}
         <TouchableOpacity
           style={{
-            width: '40%',
+            width: '45%',
             height: '100%',
             flexDirection: 'row',
             alignItems: 'center',
@@ -64,6 +64,7 @@ const Home = () => {
               backgroundColor: '#000000',
               alignItems: 'center',
               justifyContent: 'center',
+              marginLeft: 10,
             }}>
             <Image
               source={icons.stars}
@@ -77,7 +78,7 @@ const Home = () => {
           <View
             style={{
               flexDirection: 'column',
-              width: '70%',
+              width: '80%',
               height: '100%',
               justifyContent: 'center',
               paddingLeft: 10,
@@ -100,7 +101,9 @@ const Home = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={item => `${item.id}`}
-          renderItem={bookShelfItem}
+          renderItem={({ item }) => (
+            <BookShelfItem item={item} navigation={navigation} />
+          )}
         />
       </View>
     );
@@ -108,12 +111,12 @@ const Home = () => {
 
   const renderRecentBooks = () => {
     return (
-      <View style={{ padding: 20}} >
+      <View style={{ padding: 20 }} >
         <Text style={{ ...FONTS.h2, marginBottom: 8 }} >Recent Books</Text>
         {
           recentBooks.map(item => {
             return (
-              <RecentItem item={item} key={item.id} />
+              <RecentItem item={item} key={item.id} navigation={navigation} />
             )
           })
         }
@@ -124,9 +127,9 @@ const Home = () => {
   return (
     <View style={{ backgroundColor: "#FFFAFA", flex: 1 }} >
       <ScrollView showsVerticalScrollIndicator={false} >
-      {renderHeader()}
-      {renderBookShelf()}
-      {renderRecentBooks()}
+        {renderHeader()}
+        {renderBookShelf()}
+        {renderRecentBooks()}
       </ScrollView>
     </View>
   );

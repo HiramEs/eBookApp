@@ -2,9 +2,11 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import { FONTS } from '../constanst/theme';
 
-export default function bookShelfItem({item}) {
+export default function BookShelfItem({item, navigation}) {
   return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Book", {
+        item
+      })} >
         <View style={styles.bookContainer}>
           <Image
             source={item.photo}

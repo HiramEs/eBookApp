@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, TouchableOpacityBase }
 import { icons } from '../constanst'
 import { FONTS } from '../constanst/theme'
 
-export default function RecentItem({ item }) {
+export default function RecentItem({ item, navigation }) {
     return (
         <View style={styles.container} >
             <View style={styles.itemContainer} >
@@ -17,7 +17,9 @@ export default function RecentItem({ item }) {
                     <TouchableOpacity style={{ backgroundColor: "#000", ...styles.boton }} >
                         <Image source={icons.play} resizeMode="contain" style={{ tintColor: "#fff", height: 20, width: 20 }} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ borderWidth: 1, borderColor: "FFFFFA", ...styles.boton }} >
+                    <TouchableOpacity style={{ borderWidth: 1, borderColor: "FFFFFA", ...styles.boton }} onPress={() => navigation.navigate("Book", {
+                        item
+                    })} >
                         <Image source={icons.eye} resizeMode="contain" style={{ tintColor: "black", height: 20, width: 20 }} />
                     </TouchableOpacity>
                 </View>
@@ -30,26 +32,29 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         paddingTop: 10,
+        marginBottom: 10
     },
     itemContainer: {
         flexDirection: "row",
         width: "100%",
-        height: 120
+        height: 140
     },
     image: {
         width: 90,
-        height: 120,
-        resizeMode: 'contain'
+        height: "100%",
+        resizeMode: 'contain',
+        marginRight: 10
     },
     textContainer: {
         flexDirection: "column",
-        width: "45%",
+        width: "38%",
         paddingLeft: 5,
     },
     botonContainer: {
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "row"
+        flexDirection: "row",
+        width: "40%"
     },
     boton: {
         marginRight: 10,
